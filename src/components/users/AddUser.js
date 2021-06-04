@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Axios from "axios";
 var FA = require("react-fontawesome");
@@ -10,6 +10,13 @@ const AddUser = () => {
     username: "",
     email: "",
     phone: "",
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/login");
+    }
   });
 
   const handleInputChange = (e) => {
@@ -52,18 +59,20 @@ const AddUser = () => {
                 <input
                   type="text"
                   name="name"
-                  id=""
+                  maxLength="20"
                   className="form-control"
                   placeholder="Name"
                   value={user.name}
                   onChange={(e) => handleInputChange(e)}
+                  required
                 />
               </div>
               <div className="mb-3">
                 <input
                   type="text"
                   name="username"
-                  id=""
+                  maxLength="20"
+                  required
                   placeholder="Username"
                   onChange={(e) => handleInputChange(e)}
                   className="form-control"
@@ -72,9 +81,10 @@ const AddUser = () => {
               </div>
               <div className="mb-3">
                 <input
+                  maxLength="50"
                   type="email"
                   name="email"
-                  id=""
+                  required
                   placeholder="E-mail"
                   value={user.email}
                   onChange={(e) => handleInputChange(e)}
@@ -83,9 +93,11 @@ const AddUser = () => {
               </div>
               <div className="mb-3">
                 <input
-                  type="number"
+                  type="text"
+                  pattern="\d*"
                   name="phone"
-                  id=""
+                  required
+                  maxLength="11"
                   placeholder="Phone number"
                   value={user.phone}
                   onChange={(e) => handleInputChange(e)}

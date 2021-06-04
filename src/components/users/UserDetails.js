@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 var FA = require("react-fontawesome");
 
 const UserDetails = () => {
@@ -12,13 +12,22 @@ const UserDetails = () => {
   });
   const { id } = useParams();
 
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/");
+    }
+  });
+
   useEffect(() => {
     const loadUser = async () => {
       const result = await Axios.get(`http://localhost:3005/users/${id}`);
       setUser(result.data);
     };
 
-    loadUser();
+    loadUser(); // eslint-disable-next-line
   }, []);
 
   return (

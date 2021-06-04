@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 var FA = require("react-fontawesome");
 
 const Home = () => {
   const [users, setUsers] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/login");
+    }
+  });
 
   useEffect(() => {
     loadUsers();

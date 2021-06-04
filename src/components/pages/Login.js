@@ -33,12 +33,15 @@ export default class Login extends Component {
       this.setState({
         loggedIn: true,
       });
+    } else {
+      alert("Incorrect username or password!");
+      e.preventDefault();
     }
   }
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/" />;
     }
     return (
       <div className="container mt-4 col-lg-6">
@@ -48,6 +51,7 @@ export default class Login extends Component {
             <form onSubmit={this.submitForm}>
               <div>
                 <input
+                  required
                   type="text"
                   name="username"
                   placeholder="Username"
@@ -57,6 +61,7 @@ export default class Login extends Component {
                 />
               </div>
               <input
+                required
                 type="password"
                 name="password"
                 placeholder="Password"

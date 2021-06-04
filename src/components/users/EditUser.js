@@ -5,13 +5,21 @@ import { Link } from "react-router-dom";
 var FA = require("react-fontawesome");
 
 const EditUser = () => {
-  let history = useHistory();
   const { id } = useParams();
   const [user, setUser] = useState({
     name: "",
     username: "",
     email: "",
     phone: "",
+  });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/login");
+    }
   });
 
   const handleInputChange = (e) => {
@@ -23,7 +31,7 @@ const EditUser = () => {
       const result = await Axios.get(`http://localhost:3005/users/${id}`);
       setUser(result.data);
     };
-    loadUser();
+    loadUser(); // eslint-disable-next-line
   }, []);
 
   const onSubmit = async (e) => {
@@ -47,6 +55,8 @@ const EditUser = () => {
                 placeholder="Name"
                 value={user.name}
                 onChange={(e) => handleInputChange(e)}
+                maxLength="20"
+                required
               />
             </div>
             <div className="mb-3">
@@ -58,6 +68,8 @@ const EditUser = () => {
                 onChange={(e) => handleInputChange(e)}
                 className="form-control"
                 value={user.username}
+                maxLength="20"
+                required
               />
             </div>
             <div className="mb-3">
@@ -69,17 +81,22 @@ const EditUser = () => {
                 value={user.email}
                 onChange={(e) => handleInputChange(e)}
                 className="form-control"
+                maxLength="50"
+                required
               />
             </div>
             <div className="mb-3">
               <input
-                type="number"
+                type="text"
+                pattern="\d*"
                 name="phone"
-                id=""
+                required
+                maxLength="11"
                 placeholder="Phone number"
                 value={user.phone}
                 onChange={(e) => handleInputChange(e)}
                 className="form-control"
+                required
               />
             </div>
             <button className="btn btn-outline-success me-2">
