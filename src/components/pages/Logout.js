@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default class Logout extends Component {
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.props.history.push("/");
     }, 4000);

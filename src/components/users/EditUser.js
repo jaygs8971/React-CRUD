@@ -96,7 +96,6 @@ const EditUser = () => {
                 value={user.phone}
                 onChange={(e) => handleInputChange(e)}
                 className="form-control"
-                required
               />
             </div>
             <button className="btn btn-outline-success me-2">

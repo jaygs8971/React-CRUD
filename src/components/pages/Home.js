@@ -56,9 +56,6 @@ const Home = () => {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                {/* <th scope="col">Username</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Phone</th> */}
                 <th scope="col">View</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -66,12 +63,9 @@ const Home = () => {
             </thead>
             <tbody>
               {users.map((user, index) => (
-                <tr>
+                <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{user.name}</td>
-                  {/* <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone}</td> */}
                   <td>
                     <Link
                       title="View user details"

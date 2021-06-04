@@ -33,6 +33,9 @@ export default class Login extends Component {
       this.setState({
         loggedIn: true,
       });
+    } else if (username === "" && password === "") {
+      alert("Fields cannot be blank!");
+      e.preventDefault();
     } else {
       alert("Incorrect username or password!");
       e.preventDefault();
@@ -69,8 +72,11 @@ export default class Login extends Component {
                 className="form-control"
                 onChange={this.onChange}
               />
-              <br />
-              <button className="btn btn-outline-success">
+              <button
+                className="btn btn-outline-success mt-3"
+                type="button"
+                onClick={this.submitForm}
+              >
                 <i className="fas fa-sign-in-alt"></i> Login
               </button>
             </form>
