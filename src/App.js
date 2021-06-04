@@ -19,7 +19,6 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          {/* <Route exact path="/" component={Admin} /> */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/" component={Home} />
