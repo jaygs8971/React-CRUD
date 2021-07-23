@@ -7,6 +7,7 @@ const Home = () => {
   const [users, setUsers] = useState([]);
   const history = useHistory();
 
+  // Check if logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
